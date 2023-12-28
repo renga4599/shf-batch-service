@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/SHF
+    username: SHFAPP
+    password: $nt$E9spTN$gqD&jCE3g1@9
+  jpa:
+    generate-ddl: true
+  batch:
+    jdbc:
+      initialize-schema: always
