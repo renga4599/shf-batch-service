@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+#      http://localhost:8080/h2-console
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+  sql:
+    init:
+      mode: "always"
+#      If defer-datasource-initialization is set to true, you can use sql.init.data-locations to load data.
+#      To always initialize an SQL database, irrespective of its type, set spring.sql.init.mode to always. Similarly, to disable initialization, set spring.sql.init.mode to never.
+#      schema-locations: classpath:static/sql/schema.sql
+#      data-locations: classpath:static/sql/data.sql
+  jpa:
+    generate-ddl: true
+    #   If you Initialize a Database Using JPA, you can switch the feature on and off and it is vendor (hibernate, mybatis) independent.
+    defer-datasource-initialization: true
+    #    if you want script-based DataSource initialization to be able to build upon the schema creation performed by Hibernate, set spring.jpa.defer-datasource-initialization to true. This will defer data source initialization until after any EntityManagerFactory beans have been created and initialized. schema.sql can then be used to make additions to any schema creation performed by Hibernate and data.sql can be used to populate it.
+    show-sql: true
+    format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+#    ddl-auto: none, validate, update, create, and create-drop This is used to initialize the DB through hibernate
+#    create or create-drop will help to create the schema. Also it will refer the import.sql in class path to creating schema.
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type: TRACE
+        descriptor.sql.BasicBinder: TRACE
